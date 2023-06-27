@@ -1,0 +1,64 @@
+﻿@using MasFinal.Models;
+
+<div class="modal fade show" id="myModal" style="display:block; background-color: rgba(10,10,10,.8);" aria-modal="true" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Application details</h4>
+            </div>
+            <div class="modal-body">
+                <h3> Applicant name: @Application?.Applicant.FirstName @Application?.Applicant.LastName</h3>
+                @if (Application?.Applicant.SkillList is not null)
+                {
+                    
+                    @foreach (var skill in Application.Applicant.SkillList)
+                    {
+                        <h5>@skill.Name</h5>
+                        <p>Skill description: @skill.Description</p>
+                        <p>Skill category: @skill.Category</p>
+                    }
+                }
+                else
+                {
+                    <p>No skills data available</p>
+                }
+
+                @if (Application?.Applicant.Educations is not null)
+                {
+                    <h4>Education</h4>
+                    @foreach (var education in Application.Applicant.Educations)
+                    {
+                        <p>@education.Name</p>
+                    }
+                }
+                else
+                {
+                    <p>No education data available</p>
+                }
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger"
+                @onclick="@CloseAsync">
+                    Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public EventCallback OnCloseModal { get; set; }
+
+    [Parameter]
+    public JobApplication? Application { get; set; }
+
+    private async Task CloseAsync()
+    {
+        await OnCloseModal.InvokeAsync();
+    }
+}

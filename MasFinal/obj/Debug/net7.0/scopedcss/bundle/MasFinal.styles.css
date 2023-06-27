@@ -1,0 +1,169 @@
+/* _content/MasFinal/Components/Card.razor.rz.scp.css */
+.card-title[b-houj99c9fw] {
+    color: black;
+}
+
+.grid-item:hover .card-title[b-houj99c9fw] {
+    text-decoration: underline;
+    cursor: pointer;
+}
+/* _content/MasFinal/Pages/Index.razor.rz.scp.css */
+.grid-container[b-h2kz6ep7wm] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.grid-item[b-h2kz6ep7wm] {
+    background-color: #f1f1f1;
+    padding: 20px;
+}
+/* _content/MasFinal/Pages/JobPostingPage.razor.rz.scp.css */
+.details:hover[b-cx56073to4] {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.details[b-cx56073to4] {
+    color: cornflowerblue;
+}
+/* _content/MasFinal/Shared/MainLayout.razor.rz.scp.css */
+.page[b-92c7a05fmb] {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+main[b-92c7a05fmb] {
+    flex: 1;
+}
+
+.sidebar[b-92c7a05fmb] {
+    background-color: #071B2F;
+}
+
+.top-row[b-92c7a05fmb] {
+    background-color: #f7f7f7;
+    border-bottom: 1px solid #d6d5d5;
+    justify-content: flex-end;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+    .top-row[b-92c7a05fmb]  a, .top-row .btn-link[b-92c7a05fmb] {
+        white-space: nowrap;
+        margin-left: 1.5rem;
+    }
+
+    .top-row a:first-child[b-92c7a05fmb] {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+@media (max-width: 640.98px) {
+    .top-row:not(.auth)[b-92c7a05fmb] {
+        display: none;
+    }
+
+    .top-row.auth[b-92c7a05fmb] {
+        justify-content: space-between;
+    }
+
+    .top-row a[b-92c7a05fmb], .top-row .btn-link[b-92c7a05fmb] {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 641px) {
+    .page[b-92c7a05fmb] {
+        flex-direction: row;
+    }
+
+    .sidebar[b-92c7a05fmb] {
+        width: 250px;
+        height: 100vh;
+        position: sticky;
+        top: 0;
+    }
+
+    .top-row[b-92c7a05fmb] {
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .top-row[b-92c7a05fmb], article[b-92c7a05fmb] {
+        padding-left: 2rem !important;
+        padding-right: 1.5rem !important;
+    }
+}
+/* _content/MasFinal/Shared/NavMenu.razor.rz.scp.css */
+.navbar-toggler[b-biznaro7ug] {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.top-row[b-biznaro7ug] {
+    height: 3.5rem;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.navbar-brand[b-biznaro7ug] {
+    font-size: 1.1rem;
+}
+
+.oi[b-biznaro7ug] {
+    width: 2rem;
+    font-size: 1.1rem;
+    vertical-align: text-top;
+    top: -2px;
+}
+
+.nav-item[b-biznaro7ug] {
+    font-size: 0.9rem;
+    padding-bottom: 0.5rem;
+}
+
+    .nav-item:first-of-type[b-biznaro7ug] {
+        padding-top: 1rem;
+    }
+
+    .nav-item:last-of-type[b-biznaro7ug] {
+        padding-bottom: 1rem;
+    }
+
+    .nav-item[b-biznaro7ug]  a {
+        color: #d7d7d7;
+        border-radius: 4px;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        line-height: 3rem;
+    }
+
+.nav-item[b-biznaro7ug]  a.active {
+    background-color: rgba(255,255,255,0.25);
+    color: white;
+}
+
+.nav-item[b-biznaro7ug]  a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+}
+
+@media (min-width: 641px) {
+    .navbar-toggler[b-biznaro7ug] {
+        display: none;
+    }
+
+    .collapse[b-biznaro7ug] {
+        /* Never collapse the sidebar for wide screens */
+        display: block;
+    }
+    
+    .nav-scrollable[b-biznaro7ug] {
+        /* Allow sidebar to scroll for tall menus */
+        height: calc(100vh - 3.5rem);
+        overflow-y: auto;
+    }
+}

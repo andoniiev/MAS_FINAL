@@ -1,0 +1,8 @@
+﻿.details:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.details {
+    color: cornflowerblue;
+}

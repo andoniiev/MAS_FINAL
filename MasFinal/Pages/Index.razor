@@ -1,0 +1,35 @@
+﻿@using MasFinal.Components
+@using MasFinal.Models;
+@using MasFinal.Services;
+
+@inject IRecruiterService _recruiterService
+@page "/"
+
+
+<PageTitle>Job Postings</PageTitle>
+
+@if (jobPostings.Count() == 0)
+{
+    <h2>No job postings available</h2>
+}
+else
+{
+    <div class="grid-container">
+        @foreach (var jobPosting in jobPostings)
+        {
+            <Card Posting="jobPosting" />
+        }
+    </div>
+}
+
+
+
+@code {
+
+    private IEnumerable<JobPosting> jobPostings = new List<JobPosting>();
+
+    protected override void OnInitialized()
+    {
+        jobPostings = _recruiterService.GetJobPostings(1);
+    }
+}

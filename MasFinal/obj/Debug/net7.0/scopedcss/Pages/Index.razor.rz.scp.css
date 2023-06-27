@@ -1,0 +1,10 @@
+.grid-container[b-h2kz6ep7wm] {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+}
+
+.grid-item[b-h2kz6ep7wm] {
+    background-color: #f1f1f1;
+    padding: 20px;
+}

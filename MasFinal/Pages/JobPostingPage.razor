@@ -1,0 +1,101 @@
+﻿@page "/jobposting/{PostingId:int}"
+@using MasFinal.Components
+@using MasFinal.Enums;
+@using MasFinal.Models;
+@using MasFinal.Services;
+
+@inject IJobPostingService _jobPostingService;
+@inject IRecruiterService _rectuiterService;
+@inject IJSRuntime _jsRuntime;
+
+@if (_jobApplicants.Count() == 0)
+{
+    <h2>There are no job applicants for this position</h2>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">CV</th>
+                <th scope="col">Details</th>
+                <th scope="col">Status</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var application in _jobApplicants)
+            {
+                <tr>
+                    <td>@application.Applicant.FirstName</td>
+                    <td>@application.Applicant.LastName</td>
+                    <td><span class="details" @onclick=@(() => DownloadBinary(@application.Applicant.CV))>View CV</span></td>
+                    <td><span class="details" @onclick=@(() => OpenDialog(application))>View Details</span></td>
+                    <td>@application.Status</td>
+                    <td>
+                        @if (application.Status == StatusType.Processing)
+                        {
+                            <button class="btn btn-primary" @onclick="@(() => ChangeApplicationStatus(application, StatusType.Accepted))">Accept</button>
+                            <button class="btn btn-danger" @onclick="@(() => ChangeApplicationStatus(application, StatusType.Rejected))">Reject</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (isDialogOpened)
+{
+    <Dialog OnCloseModal="@CloseModalClicked" Application="@_selectedJobApplication" />
+}
+
+@code {
+
+    [Parameter]
+    public int PostingId { get; set; }
+
+    private JobApplication? _selectedJobApplication;
+    private bool isDialogOpened;
+
+    private List<JobApplication> _jobApplicants = new List<JobApplication>();
+
+    protected override void OnInitialized()
+    {
+        _jobApplicants = _jobPostingService.GetApplicantsForJobPosting(PostingId);
+    }
+
+    private async Task DownloadBinary(string path)
+    {
+        // Generate a file
+        byte[] file = File.ReadAllBytes(path);
+
+        // Send the data to JS to actually download the file
+        await _jsRuntime.InvokeVoidAsync("BlazorDownloadFile", "resume.pdf", "application/octet-stream", file);
+    }
+
+    private void ChangeApplicationStatus(JobApplication application, StatusType applicationStatus)
+    {
+        application.Status = applicationStatus;
+        var applicationId = application.Id;
+
+        if (applicationStatus is StatusType.Accepted)
+            _rectuiterService.AcceptApplicant(applicationId);
+        else
+            _rectuiterService.RejectApplicant(applicationId);
+    }
+
+    private void OpenDialog(JobApplication application)
+    {
+        _selectedJobApplication = application;
+        isDialogOpened = true;
+    }
+
+    private void CloseModalClicked()
+    {
+        _selectedJobApplication = null;
+        isDialogOpened = false;
+    }
+}

@@ -1,0 +1,30 @@
+﻿@using MasFinal.Models;
+
+@inject NavigationManager _navigationManager
+
+@if (Posting is not null)
+{
+    <div class="card grid-item" style="width: 18rem;" @onclick="@NavigateToJobPosting">
+        <div class="card-body">
+            <h5 class="card-title">@Posting.Title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@Posting.Company.CompanyName</h6>
+            <p class="card-text">@Posting.DatePosted</p>
+        </div>
+    </div>
+}
+
+@code {
+
+    [Parameter, EditorRequired]
+    public JobPosting? Posting { get; set; }
+
+    private void NavigateToJobPosting()
+    {
+        if (Posting is null)
+            return;
+
+        _navigationManager.NavigateTo($"jobposting/{Posting.Id}");
+    }
+
+
+}

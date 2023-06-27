@@ -1,0 +1,8 @@
+.card-title[b-houj99c9fw] {
+    color: black;
+}
+
+.grid-item:hover .card-title[b-houj99c9fw] {
+    text-decoration: underline;
+    cursor: pointer;
+}

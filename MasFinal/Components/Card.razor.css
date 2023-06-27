@@ -1,0 +1,8 @@
+﻿.card-title {
+    color: black;
+}
+
+.grid-item:hover .card-title {
+    text-decoration: underline;
+    cursor: pointer;
+}
