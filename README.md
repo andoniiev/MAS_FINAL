@@ -5,6 +5,7 @@ Implementation of the final project completed during studies at PJATK for MAS su
 ## Project Points
 
 The documentation explaining the structure of the project, use case, and design decision can be found [here](https://github.com/andoniiev/MAS_FINAL/blob/main/MAS_Documentation.pdf).
+
 Total score: 82/100
 - The difficulty of the task: 10/10
 - The scope and the correctness of the realized functionality: 15/15
